@@ -1,0 +1,320 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #f7f8fc;
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+}
+
+header {
+    text-align: center;
+    padding: 15px 0;
+    background-color: #f7f8fc;
+    position: relative;
+    z-index: 2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 100px;
+}
+
+.logo img {
+    height: 95px;
+    width: 180px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav .btn {
+    border-radius: 30px;
+    padding: 10px 25px;
+    font-size: 0.9rem;
+    width: 140px;
+    height: 48px;
+    border: 2px solid transparent;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.nav .btn-signup {
+    background-color: rgb(162, 139, 252);
+    color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.nav .btn-signup:hover {
+    background-color: rgb(250, 54, 104);
+}
+
+.nav .btn-login {
+    border: 2px solid #7a63ee;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.nav .btn-login:hover {
+    color: #000;
+    border-color: #000;
+}
+
+.main-section {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.main-section h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.main-section p {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 40px;
+}
+
+.red-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-bottom: 25px;
+    vertical-align: bottom;
+}
+
+.buttons {
+    margin: 20px 0;
+}
+
+.btn-main {
+    padding: 15px 40px;
+    margin: 0 15px;
+    background-color: rgb(162, 139, 252);
+    color: #fff;
+    width: 205px;
+    height: 55px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.0rem;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.btn-main:hover {
+    background-color: rgb(250, 54, 104);
+}
+
+.btn-secondary {
+    padding: 15px 40px;
+    margin: 0 15px;
+    background-color: rgb(226, 227, 230);
+    color: rgb(110, 106, 108);
+    width: 205px;
+    height: 55px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.0rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgb(250, 54, 104);
+}
+
+section {
+    text-align: center;
+}
+
+section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    margin-top: 50px;
+    font-weight: 500;
+    color: rgb(110, 106, 108);
+}
+
+.main-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.large-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    margin-left: 15px;
+}
+
+.about-paragraph {
+    width: 75%;
+    color: #636060e6;
+    font-weight: normal;
+    margin: 20px auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.about-paragraph:first-of-type {
+    color: black;
+    font-weight: 600;
+}
+
+section p {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    color: #555;
+}
+
+.advantages-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f7f8fc;
+}
+
+.advantages-section .advantages-title {
+    margin-top: 210px;
+}
+
+.advantages-section .subtitle {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.advantages-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.advantage {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.advantage h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.advantage p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.advantage-icon {
+    width: 100px;
+    height: 90px;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background-color: #f7f8fc;
+}
+
+footer p {
+    color: #999;
+}
+
+.background-shapes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.background-shapes::before, .background-shapes::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: #f1f3f7;
+}
+
+.background-shapes::before {
+    width: 450px;
+    height: 450px;
+    top: -200px;
+    left: -100px;
+}
+
+.background-shapes::after {
+    width: 300px;
+    height: 300px;
+    bottom: -100px;
+    right: -50px;
+}
+
+.about-link {
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+    padding-bottom: 5px;
+    margin-right: 80px;
+    position: relative;
+    cursor: pointer;
+    align-self: center;
+}
+
+.about-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: #7a63ee;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.about-link:hover {
+    color: #7a63ee;
+}
+
+.about-link:hover::after {
+    width: 100%;
+}
