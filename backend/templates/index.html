@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Health Care</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="frontend/img/icon.png" type="image/png">
+  <link rel="stylesheet" href="frontend/static/index.css">
 </head>
 <body>
-    <h1>Hello World</h1>
+
+  <div class="background-shapes"></div>
+
+  <header>
+    <div class="logo">
+      <img src="frontend/img/logo.png" alt="Mental Health Care Logo">
+      <nav class="nav">
+        <a href="#about-section" class="about-link">About us</a>
+        <button class="btn btn-login">Log In</button>
+        <button class="btn btn-signup">Sign Up</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="main-section">
+    <h1>Mental Health Care<span class="red-dot"></span></h1>
+    <p>Your mental well-being matters - anytime, anywhere.</p>
+    <div class="buttons">
+      <button class="btn-main">Start now</button>
+      <a href="#about-section"><button class="btn-secondary">Learn more</button></a>
+    </div>
+  </section>
+
+  <section id="about-section">
+    <h2>ABOUT</h2>
+    <h2 class="main-title">Mental Health Care</h2>
+    <span class="large-dot"></span><span class="large-dot"></span><span class="large-dot"></span>
+  </section>
+
+  <p class="about-paragraph">We are dedicated to creating a supportive environment where everyone feels heard and understood. Whether you are seeking help for the first time or want to monitor your well-being, Mental Health Care is here to assist you on every step of your mental health journey.</p>
+  <p class="about-paragraph">At Mental Health Care, we believe that mental well-being is essential for a fulfilling life. Our mission is to make mental health support accessible, personalized, and available to everyone, whenever it is needed. By harnessing the power of artificial intelligence, we aim to detect early signs of mental health issues and guide users towards meaningful solutions.</p>
+
+  <section class="advantages-section">
+    <h2 class="advantages-title">ADVANTAGES</h2>
+    <p class="subtitle">Our platform provides</p>
+    <div class="advantages-container">
+      <div class="advantage">
+        <img src="frontend/img/personalized_assessments.png" alt="Personalized Assessments" class="advantage-icon">
+        <h3>Personalized Assessments</h3>
+        <p>Through AI-driven questionnaires, users receive accurate insights into their mental state.</p>
+      </div>
+      <div class="advantage">
+        <img src="frontend/img/24_7_support.png" alt="24/7 Support" class="advantage-icon">
+        <h3>24/7 Support</h3>
+        <p>Instant recommendations to help you manage stress, anxiety, or depression.</p>
+      </div>
+      <div class="advantage">
+        <img src="frontend/img/advanced_technologies.png" alt="Advanced Technologies" class="advantage-icon">
+        <h3>Advanced Technologies</h3>
+        <p>We create our products using the latest technologies to ensure the best experience.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Mental Health Care. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>

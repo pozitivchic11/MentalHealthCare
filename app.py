@@ -1,7 +1,7 @@
 from flask import Flask
 from backend.routes.home_page_routes import home_page_routes
 
-app = Flask(__name__, template_folder='backend/templates')
+app = Flask(__name__, template_folder='backend/templates', static_folder='frontend')
 
 app.register_blueprint(home_page_routes)
 
