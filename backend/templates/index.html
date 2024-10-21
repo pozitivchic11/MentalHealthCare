@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap" rel="stylesheet">
   <link rel="icon" href="frontend/img/icon.png" type="image/png">
   <link rel="stylesheet" href="frontend/static/index.css">
+  <link rel="stylesheet" href="frontend/static/signup.css">
 </head>
 <body>
 
@@ -18,7 +19,7 @@
       <nav class="nav">
         <a href="#about-section" class="about-link">About us</a>
         <button class="btn btn-login">Log In</button>
-        <button class="btn btn-signup">Sign Up</button>
+        <a href="#signup-modal"><button class="btn btn-signup">Sign Up</button></a>
       </nav>
     </div>
   </header>
@@ -27,7 +28,7 @@
     <h1>Mental Health Care<span class="red-dot"></span></h1>
     <p>Your mental well-being matters - anytime, anywhere.</p>
     <div class="buttons">
-      <button class="btn-main">Start now</button>
+      <a href="#signup-modal"><button class="btn-main">Start now</button></a>
       <a href="#about-section"><button class="btn-secondary">Learn more</button></a>
     </div>
   </section>
@@ -67,5 +68,25 @@
     <p>&copy; 2024 Mental Health Care. All rights reserved.</p>
   </footer>
 
+  {% include 'signup.html' %}
+
+  <script>
+    document.querySelectorAll('.btn-signup, .btn-main').forEach(function (button) {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.getElementById('signup-modal').style.display = 'block';
+        });
+    });
+
+    document.querySelector('.modal-close').addEventListener('click', function () {
+        document.getElementById('signup-modal').style.display = 'none';
+    });
+
+    window.addEventListener('click', function (event) {
+        if (event.target === document.getElementById('signup-modal')) {
+            document.getElementById('signup-modal').style.display = 'none';
+        }
+    });
+    </script>
 </body>
 </html>
