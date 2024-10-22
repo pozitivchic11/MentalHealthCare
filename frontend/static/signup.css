@@ -83,3 +83,9 @@
 .modal-content .btn-signup:hover {
     background-color: rgb(250, 54, 104);
 }
+
+.signup-message {
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+}
