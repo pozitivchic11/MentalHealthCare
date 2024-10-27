@@ -83,30 +83,40 @@
         loginFields.forEach(field => {
             field.value = '';
         });
+
+        const signupMessage = document.getElementById('signup-modal').querySelector('.signup-message');
+        if (signupMessage) {
+            signupMessage.textContent = '';
+        }
+
+        const loginMessage = document.getElementById('login-modal').querySelector('#login-message');
+        if (loginMessage) {
+            loginMessage.textContent = '';
+        }
     }
 
     document.querySelectorAll('.btn-signup, .btn-main').forEach(function (button) {
         button.addEventListener('click', function (e) {
             e.preventDefault();
-            resetForms();
             document.getElementById('signup-modal').style.display = 'block';
         });
     });
 
     document.querySelector('.modal-close-signup').addEventListener('click', function () {
         document.getElementById('signup-modal').style.display = 'none';
+        resetForms();
     });
 
     document.querySelectorAll('.btn-login').forEach(function (button) {
         button.addEventListener('click', function (e) {
             e.preventDefault();
-            resetForms();
             document.getElementById('login-modal').style.display = 'block';
         });
     });
 
     document.querySelector('.modal-close-login').addEventListener('click', function () {
         document.getElementById('login-modal').style.display = 'none';
+        resetForms();
     });
 
     document.getElementById('switch-to-signup').addEventListener('click', function() {
@@ -121,5 +131,7 @@
         document.getElementById('login-modal').style.display = 'block';
     });
   </script>
+
+
 </body>
 </html>
