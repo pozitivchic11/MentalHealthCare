@@ -6,8 +6,9 @@
   <title>Mental Health Care</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap" rel="stylesheet">
   <link rel="icon" href="frontend/img/icon.png" type="image/png">
-  <link rel="stylesheet" href="frontend/static/index.css">
-  <link rel="stylesheet" href="frontend/static/signup.css">
+  <link rel="stylesheet" href="frontend/static/css/index.css">
+  <link rel="stylesheet" href="frontend/static/css/login.css">
+  <link rel="stylesheet" href="frontend/static/css/signup.css">
 </head>
 <body>
 
@@ -69,17 +70,55 @@
   </footer>
 
   {% include 'signup.html' %}
+  {% include 'login.html' %}
 
   <script>
+    function resetForms() {
+        const signupFields = document.querySelectorAll('#signup-modal input');
+        signupFields.forEach(field => {
+            field.value = '';
+        });
+
+        const loginFields = document.querySelectorAll('#login-modal input');
+        loginFields.forEach(field => {
+            field.value = '';
+        });
+    }
+
     document.querySelectorAll('.btn-signup, .btn-main').forEach(function (button) {
         button.addEventListener('click', function (e) {
             e.preventDefault();
+            resetForms();
             document.getElementById('signup-modal').style.display = 'block';
         });
     });
 
-    document.querySelector('.modal-close').addEventListener('click', function () {
+    document.querySelector('.modal-close-signup').addEventListener('click', function () {
         document.getElementById('signup-modal').style.display = 'none';
+    });
+
+    document.querySelectorAll('.btn-login').forEach(function (button) {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            resetForms();
+            document.getElementById('login-modal').style.display = 'block';
+        });
+    });
+
+    document.querySelector('.modal-close-login').addEventListener('click', function () {
+        document.getElementById('login-modal').style.display = 'none';
+    });
+
+    document.getElementById('switch-to-signup').addEventListener('click', function() {
+        document.getElementById('login-modal').style.display = 'none';
+        resetForms();
+        document.getElementById('signup-modal').style.display = 'block';
+    });
+
+    document.getElementById('switch-to-login').addEventListener('click', function() {
+        document.getElementById('signup-modal').style.display = 'none';
+        resetForms();
+        document.getElementById('login-modal').style.display = 'block';
     });
   </script>
 </body>
