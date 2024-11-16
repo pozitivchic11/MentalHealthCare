@@ -1,26 +1,62 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Page</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh; /* Висота вікна браузера */
-            margin: 0;
-            background-color: #f0f0f0; /* Світло-сірий фон */
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            font-size: 48px; /* Розмір шрифту */
-            color: #333; /* Темно-сірий колір тексту */
-        }
-    </style>
+    <title>Mental Health Assistant Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chatbot.css') }}">
 </head>
 <body>
-    <h1>AI page</h1>
+    <div class="chat-container">
+        <h1>Mental Health Assistant Chatbot</h1>
+        <form id="chat-form" action="{{ url_for('api.test_page') }}" method="POST">
+            <label for="model">Choose a Model:</label>
+            <select name="model" id="model" required>
+                <option value="" disabled selected>Select a model</option>
+                {% for model_name in models %}
+                <option value="{{ model_name }}">{{ model_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="input_text">Enter your question:</label>
+            <textarea id="input_text" name="input_text" rows="4" cols="50" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <div id="response-container">
+            <h2>Chatbot Response:</h2>
+            <pre id="response"></pre>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('chat-form');
+        const responseContainer = document.getElementById('response');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            responseContainer.textContent = "Loading...";
+
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                const reader = response.body.getReader();
+                let { value, done } = await reader.read();
+                let result = "";
+                while (!done) {
+                    result += new TextDecoder().decode(value);
+                    responseContainer.textContent = result;
+                    ({ value, done } = await reader.read());
+                }
+            } else {
+                responseContainer.textContent = "Error: " + await response.text();
+            }
+        });
+    </script>
 </body>
 </html>
