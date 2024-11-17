@@ -73,27 +73,47 @@
   {% include 'login.html' %}
 
   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.getElementById('signup-modal').style.display = 'none';
+        document.getElementById('login-modal').style.display = 'none';
+    });
+
     function resetForms() {
-        const signupFields = document.querySelectorAll('#signup-modal input');
-        signupFields.forEach(field => {
-            field.value = '';
-        });
+        const signupModal = document.getElementById('signup-modal');
+        const loginModal = document.getElementById('login-modal');
 
-        const loginFields = document.querySelectorAll('#login-modal input');
-        loginFields.forEach(field => {
-            field.value = '';
-        });
+        if (signupModal) {
+            const signupFields = signupModal.querySelectorAll('input');
+            signupFields.forEach(field => {
+                field.value = '';
+            });
 
-        const signupMessage = document.getElementById('signup-modal').querySelector('.signup-message');
-        if (signupMessage) {
-            signupMessage.textContent = '';
+            const signupMessage = signupModal.querySelector('.signup-message');
+            if (signupMessage) {
+                signupMessage.textContent = '';
+            }
         }
 
-        const loginMessage = document.getElementById('login-modal').querySelector('#login-message');
-        if (loginMessage) {
-            loginMessage.textContent = '';
+        if (loginModal) {
+            const loginFields = loginModal.querySelectorAll('input');
+            loginFields.forEach(field => {
+                field.value = '';
+            });
+
+            const loginMessage = loginModal.querySelector('#login-message');
+            if (loginMessage) {
+                loginMessage.textContent = '';
+            }
         }
     }
+
+    window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+            document.getElementById('signup-modal').style.display = 'none';
+            document.getElementById('login-modal').style.display = 'none';
+            resetForms();
+        }
+    });
 
     document.querySelectorAll('.btn-signup, .btn-main').forEach(function (button) {
         button.addEventListener('click', function (e) {
@@ -119,19 +139,18 @@
         resetForms();
     });
 
-    document.getElementById('switch-to-signup').addEventListener('click', function() {
+    document.getElementById('switch-to-signup').addEventListener('click', function () {
         document.getElementById('login-modal').style.display = 'none';
         resetForms();
         document.getElementById('signup-modal').style.display = 'block';
     });
 
-    document.getElementById('switch-to-login').addEventListener('click', function() {
+    document.getElementById('switch-to-login').addEventListener('click', function () {
         document.getElementById('signup-modal').style.display = 'none';
         resetForms();
         document.getElementById('login-modal').style.display = 'block';
     });
   </script>
-
 
 </body>
 </html>
