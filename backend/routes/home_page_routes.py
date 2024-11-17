@@ -37,11 +37,10 @@ def signup():
     return jsonify({'message': 'User created successfully!'}), http_status
 
 
-@home_page_routes.route('/test', methods=['GET', 'POST'])
+@home_page_routes.route('/ai_assistant', methods=['GET', 'POST'])
 def test_page():
     """Handle chatbot interaction."""
     if request.method == 'POST':
-        # Get user input and selected model from form
         selected_model = request.form.get('model')
         input_text = request.form.get('input_text')
 
@@ -50,7 +49,6 @@ def test_page():
 
         model_id = MODELS[selected_model]
 
-        # Send request to Groq API with streaming response
         try:
             completion = client.chat.completions.create(
                 model=model_id,
@@ -77,5 +75,4 @@ def test_page():
         except Exception as e:
             return f"An error occurred: {e}", 500
 
-    # Render the HTML form for the chatbot
-    return render_template('test.html', models=MODELS)
+    return render_template('chatbot.html', models=MODELS)
