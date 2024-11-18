@@ -6,4 +6,4 @@ app = Flask(__name__, template_folder='backend/templates', static_folder='fronte
 app.register_blueprint(home_page_routes)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(ssl_context=('localhost.crt', 'localhost.key'), debug=True)

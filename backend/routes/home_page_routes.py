@@ -1,12 +1,16 @@
+import os
 from flask import Blueprint, render_template, request, jsonify, Response
 from backend.src.signup import register_user
 from backend.src.login import login_user
 from groq import Groq
+from dotenv import load_dotenv
+
+load_dotenv()
 
 home_page_routes = Blueprint('api', __name__)
 
 # API Key and Available Models
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.getenv('GROQ_API_KEY')
 client = Groq(api_key=GROQ_API_KEY)
 
 MODELS = {

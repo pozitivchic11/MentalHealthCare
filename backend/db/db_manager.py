@@ -1,8 +1,12 @@
+import os
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
 
-DATABASE_URL = "postgresql://postgres.vtidemueinilvqehlfjq:nyebVjXE3q!idgi@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
+load_dotenv()
 
+DATABASE_URL = os.getenv('DATABASE_URL')
 engine = create_engine(DATABASE_URL)
+
 
 def execute_query(raw_query, query_type="select"):
     """

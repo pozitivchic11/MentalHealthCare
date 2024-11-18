@@ -1,5 +1,6 @@
 from backend.db.db_manager import execute_query
 
+
 def register_user(name, surname, email, password):
     existing_user_query = f"SELECT * FROM users WHERE email = '{email}'"
     existing_user = execute_query(existing_user_query, query_type="select")
