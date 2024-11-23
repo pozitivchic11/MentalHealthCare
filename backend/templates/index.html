@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mental Health Care</title>
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="frontend/img/icon.png" type="image/png">
+  <link rel="icon" href="frontend/static/img/icon.png" type="image/png">
   <link rel="stylesheet" href="frontend/static/css/index.css">
   <link rel="stylesheet" href="frontend/static/css/login.css">
   <link rel="stylesheet" href="frontend/static/css/signup.css">
@@ -16,11 +16,17 @@
 
   <header>
     <div class="logo">
-      <img src="frontend/img/logo.png" alt="Mental Health Care Logo">
+      <img src="frontend/static/img/logo.png" alt="Mental Health Care Logo">
       <nav class="nav">
         <a href="#about-section" class="about-link">About us</a>
-        <button class="btn btn-login">Log In</button>
-        <a href="#signup-modal"><button class="btn btn-signup">Sign Up</button></a>
+        {% if user_email %}
+          <form action="/logout" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-logout">Log Out</button>
+          </form>
+        {% else %}
+          <button class="btn btn-login">Log In</button>
+          <a href="#signup-modal"><button class="btn btn-signup">Sign Up</button></a>
+        {% endif %}
       </nav>
     </div>
   </header>
@@ -29,7 +35,11 @@
     <h1>Mental Health Care<span class="red-dot"></span></h1>
     <p>Your mental well-being matters - anytime, anywhere.</p>
     <div class="buttons">
-      <a href="#signup-modal"><button class="btn-main">Start now</button></a>
+      {% if user_email %}
+        <button class="btn-main" data-logged-in="true">Let’s talk</button>
+      {% else %}
+        <button class="btn-main" data-logged-in="false">Start now</button>
+      {% endif %}
       <a href="#about-section"><button class="btn-secondary">Learn more</button></a>
     </div>
   </section>
@@ -48,17 +58,17 @@
     <p class="subtitle">Our platform provides</p>
     <div class="advantages-container">
       <div class="advantage">
-        <img src="frontend/img/personalized_assessments.png" alt="Personalized Assessments" class="advantage-icon">
+        <img src="frontend/static/img/personalized_assessments.png" alt="Personalized Assessments" class="advantage-icon">
         <h3>Personalized Assessments</h3>
         <p>Through AI-driven questionnaires, users receive accurate insights into their mental state.</p>
       </div>
       <div class="advantage">
-        <img src="frontend/img/24_7_support.png" alt="24/7 Support" class="advantage-icon">
+        <img src="frontend/static/img/24_7_support.png" alt="24/7 Support" class="advantage-icon">
         <h3>24/7 Support</h3>
         <p>Instant recommendations to help you manage stress, anxiety, or depression.</p>
       </div>
       <div class="advantage">
-        <img src="frontend/img/advanced_technologies.png" alt="Advanced Technologies" class="advantage-icon">
+        <img src="frontend/static/img/advanced_technologies.png" alt="Advanced Technologies" class="advantage-icon">
         <h3>Advanced Technologies</h3>
         <p>We create our products using the latest technologies to ensure the best experience.</p>
       </div>
@@ -68,89 +78,10 @@
   <footer>
     <p>&copy; 2024 Mental Health Care. All rights reserved.</p>
   </footer>
-
   {% include 'signup.html' %}
   {% include 'login.html' %}
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        document.getElementById('signup-modal').style.display = 'none';
-        document.getElementById('login-modal').style.display = 'none';
-    });
-
-    function resetForms() {
-        const signupModal = document.getElementById('signup-modal');
-        const loginModal = document.getElementById('login-modal');
-
-        if (signupModal) {
-            const signupFields = signupModal.querySelectorAll('input');
-            signupFields.forEach(field => {
-                field.value = '';
-            });
-
-            const signupMessage = signupModal.querySelector('.signup-message');
-            if (signupMessage) {
-                signupMessage.textContent = '';
-            }
-        }
-
-        if (loginModal) {
-            const loginFields = loginModal.querySelectorAll('input');
-            loginFields.forEach(field => {
-                field.value = '';
-            });
-
-            const loginMessage = loginModal.querySelector('#login-message');
-            if (loginMessage) {
-                loginMessage.textContent = '';
-            }
-        }
-    }
-
-    window.addEventListener('pageshow', function (event) {
-        if (event.persisted) {
-            document.getElementById('signup-modal').style.display = 'none';
-            document.getElementById('login-modal').style.display = 'none';
-            resetForms();
-        }
-    });
-
-    document.querySelectorAll('.btn-signup, .btn-main').forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('signup-modal').style.display = 'block';
-        });
-    });
-
-    document.querySelector('.modal-close-signup').addEventListener('click', function () {
-        document.getElementById('signup-modal').style.display = 'none';
-        resetForms();
-    });
-
-    document.querySelectorAll('.btn-login').forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.getElementById('login-modal').style.display = 'block';
-        });
-    });
-
-    document.querySelector('.modal-close-login').addEventListener('click', function () {
-        document.getElementById('login-modal').style.display = 'none';
-        resetForms();
-    });
-
-    document.getElementById('switch-to-signup').addEventListener('click', function () {
-        document.getElementById('login-modal').style.display = 'none';
-        resetForms();
-        document.getElementById('signup-modal').style.display = 'block';
-    });
-
-    document.getElementById('switch-to-login').addEventListener('click', function () {
-        document.getElementById('signup-modal').style.display = 'none';
-        resetForms();
-        document.getElementById('login-modal').style.display = 'block';
-    });
-  </script>
-
+  <script src="frontend/js/index.js"></script>
+  <script src="frontend/js/login.js"></script>
+  <script src="frontend/js/signup.js"></script>
 </body>
 </html>

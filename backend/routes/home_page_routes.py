@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, request, jsonify, Response
-from backend.src.signup import register_user
-from backend.src.login import login_user
 from groq import Groq
+from backend.src.login import login_user
+from backend.src.signup import register_user
+from flask import Blueprint, render_template, request, jsonify, Response, session, redirect, url_for
 
 home_page_routes = Blueprint('api', __name__)
 
@@ -16,30 +16,79 @@ MODELS = {
     'Gemma2': 'gemma2-9b-it'
 }
 
+@home_page_routes.before_request
+def make_session_permanent():
+    session.permanent = True
 
 @home_page_routes.route('/')
 def home_page():
     """Render the homepage."""
-    return render_template('index.html')
+    user_email = session.get('user_email')
+    user_name = session.get('user_name')
+    return render_template('index.html', user_email=user_email, user_name=user_name)
 
+@home_page_routes.before_request
+def make_session_permanent():
+    session.permanent = True
 
 @home_page_routes.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    http_status = login_user(data.get('email'), data.get('password'))
-    return jsonify({'message': 'User logged in successfully!'}), http_status
 
+    email = data.get('email')
+    password = data.get('password')
+    user_name = login_user(email, password)
+
+    if user_name:
+        session['user_email'] = email
+        session['user_name'] = user_name
+        return jsonify({'message': 'User logged in successfully!'}), 200
+    else:
+        return jsonify({'message': 'Login failed!'}), 401
+
+@home_page_routes.before_request
+def make_session_permanent():
+    session.permanent = True
 
 @home_page_routes.route('/signup', methods=['POST'])
 def signup():
     data = request.get_json()
-    http_status = register_user(data.get('name'), data.get('surname'), data.get('email'), data.get('password'))
-    return jsonify({'message': 'User created successfully!'}), http_status
+    name = data.get('name')
+    surname = data.get('surname')
+    email = data.get('email')
+    password = data.get('password')
 
+    http_status = register_user(name, surname, email, password)
+    if http_status == 201:
+        session['user_email'] = email
+        session['user_name'] = name
+        return jsonify({'message': 'User created successfully!'}), 201
+    else:
+        return jsonify({'message': 'Signup failed!'}), http_status
+
+@home_page_routes.before_request
+def make_session_permanent():
+    session.permanent = True
+
+@home_page_routes.route('/logout', methods=['POST'])
+def logout():
+    """Log out the user by clearing their session."""
+    session.clear()
+    return redirect(url_for('api.home_page'))
+
+@home_page_routes.before_request
+def make_session_permanent():
+    session.permanent = True
 
 @home_page_routes.route('/ai_assistant', methods=['GET', 'POST'])
-def test_page():
+def ai_assistant_page():
     """Handle chatbot interaction."""
+    user_email = session.get('user_email')
+    user_name = session.get('user_name')
+
+    if 'user_email' not in session:
+        return redirect(url_for('api.home_page'))
+
     if request.method == 'POST':
         selected_model = request.form.get('model')
         input_text = request.form.get('input_text')
@@ -75,4 +124,4 @@ def test_page():
         except Exception as e:
             return f"An error occurred: {e}", 500
 
-    return render_template('chatbot.html', models=MODELS)
+    return render_template('chatbot.html', models=MODELS, user_email=user_email, user_name=user_name)
