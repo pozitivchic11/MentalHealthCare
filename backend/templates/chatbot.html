@@ -13,10 +13,10 @@
         <aside class="sidebar">
             <h2>Menu</h2>
             <ul>
-                <li><a href="#option1">Home</a></li>
-                <li><a href="#option2">About</a></li>
-                <li><a href="#option3">Help</a></li>
-                <li><a href="#option4">Settings</a></li>
+                <li><a href="{{ url_for('api.home_page') }}">Home</a></li>
+                <li><a href="#about" id="about-link">About</a></li>
+                <li><a href="#help" id="help-link">Help</a></li>
+                <li><a href="#model-info" id="model-info-link">Model Information</a></li>
             </ul>
             <div class="user-panel">
                 <p class="username">Logged in as: <span>{{ user_name }}</span></p>
@@ -28,7 +28,7 @@
             <header class="chat-header">
                 <h1>Mental Health Assistant Chatbot</h1>
             </header>
-            <section class="chat-container">
+            <section class="chat-container" id="chat-container">
                 <div class="chat-box" id="chat-box"></div>
                 <form id="chat-form" action="{{ url_for('api.ai_assistant_page') }}" method="POST">
                     <label for="model">Choose a Model:</label>
@@ -41,6 +41,52 @@
                     <textarea id="message-input" name="input_text" placeholder="Type your message here..." required></textarea>
                     <button type="submit" class="send-btn">Send</button>
                 </form>
+            </section>
+
+            <section id="about" style="display:none;">
+                <h2>About</h2>
+                <p>Welcome to the <strong>Mental Health Assistant Chatbot</strong> – your trusted companion in navigating mental well-being. This app is designed to provide support, guidance, and resources for individuals facing emotional or mental health challenges.</p>
+                <p>Our chatbot uses advanced AI models to engage in thoughtful conversations, offering personalized advice and recommendations to help improve your mental health. Whether you need someone to talk to, mindfulness tips, or guidance on coping with stress, we’re here to assist you in a safe and supportive space.</p>
+                <h3>Features:</h3>
+                <ul>
+                    <li><strong>Confidential Conversations</strong>: All interactions are private and secure.</li>
+                    <li><strong>AI-Powered Support</strong>: Using state-of-the-art models, our chatbot offers relevant advice based on your inputs.</li>
+                    <li><strong>Mental Health Resources</strong>: Access a wide range of tools and tips to improve your well-being.</li>
+                </ul>
+                <p>Your mental health matters, and we’re here to support you every step of the way :)</p>
+            </section>
+
+            <section id="help" style="display:none;">
+                <h2>Help</h2>
+                <p>If you're new to using the Mental Health Assistant Chatbot, here's a quick guide:</p>
+                <ul>
+                    <li><strong>Choose a Model:</strong> Select the AI model you'd like to interact with from the dropdown menu. Available models: Liama3 70B, Liama3 8B, Mixtral, Gemma2.</li>
+                    <li><strong>Type Your Message:</strong> Enter your message in the text area. The chatbot will respond to your questions or offer mental health advice.</li>
+                    <li><strong>Send a Message:</strong> After typing your message, press the "Send" button to send it to the chatbot.</li>
+                    <li><strong>Logout:</strong> If you wish to log out, click on the logout button at the top right.</li>
+                </ul>
+                <p>For further assistance, please contact support at support@mentalhealthbot.com.</p>
+            </section>
+
+            <section id="model-info" style="display:none;">
+                <h2>Model Information</h2>
+                <p>Below is information about the available AI models used by the chatbot:</p>
+
+                <h3>Llama3 70B</h3>
+                <p><strong>Overview:</strong> Llama3 70B is a large language model designed to handle complex tasks and provide detailed, nuanced responses. It excels in understanding context and can generate insightful responses for mental health-related queries.</p>
+                <p><strong>Use cases:</strong> Ideal for users who need more in-depth conversations or complex advice.</p>
+
+                <h3>Llama3 8B</h3>
+                <p><strong>Overview:</strong> Llama3 8B is a smaller version of the Llama3 70B model, optimized for faster responses. It may not handle complex queries as effectively as the 70B model but provides accurate and reliable responses.</p>
+                <p><strong>Use cases:</strong> Suitable for users seeking quick answers or less complex conversations.</p>
+
+                <h3>Mixtral</h3>
+                <p><strong>Overview:</strong> Mixtral is a hybrid model designed to balance accuracy and speed. It is versatile and well-suited for general-purpose conversations.</p>
+                <p><strong>Use cases:</strong> Best for users who want a balance between performance and speed, suitable for a variety of mental health topics.</p>
+
+                <h3>Gemma2</h3>
+                <p><strong>Overview:</strong> Gemma2 is a lightweight, fast model with a focus on providing emotionally supportive and empathetic responses. It is designed to handle stress-relief and well-being-focused conversations.</p>
+                <p><strong>Use cases:</strong> Ideal for users looking for emotional support, stress management, or mindfulness tips.</p>
             </section>
         </main>
     </div>

@@ -69,3 +69,29 @@ function logout() {
         alert('An error occurred. Please try again.');
     });
 }
+
+function toggleSection(sectionId) {
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+        if (section.id === sectionId) {
+            section.style.display = "block";
+        } else if (section.id !== "chat-container" && section.id !== "chat-section") {
+            section.style.display = "none";
+        }
+    });
+}
+
+document.getElementById("about-link").addEventListener("click", function(event) {
+    event.preventDefault();
+    toggleSection("about");
+});
+
+document.getElementById("help-link").addEventListener("click", function(event) {
+    event.preventDefault();
+    toggleSection("help");
+});
+
+document.getElementById("model-info-link").addEventListener("click", function(event) {
+    event.preventDefault();
+    toggleSection("model-info");
+});
