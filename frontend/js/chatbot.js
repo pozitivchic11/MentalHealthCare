@@ -71,12 +71,13 @@ function logout() {
 }
 
 function toggleSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const isCurrentlyVisible = section.style.display === "block";
+    section.style.display = isCurrentlyVisible ? "none" : "block";
     const sections = document.querySelectorAll("section");
-    sections.forEach((section) => {
-        if (section.id === sectionId) {
-            section.style.display = "block";
-        } else if (section.id !== "chat-container" && section.id !== "chat-section") {
-            section.style.display = "none";
+    sections.forEach((sec) => {
+        if (sec.id !== sectionId && sec.id !== "chat-container" && sec.id !== "chat-section") {
+            sec.style.display = "none";
         }
     });
 }
@@ -95,3 +96,4 @@ document.getElementById("model-info-link").addEventListener("click", function(ev
     event.preventDefault();
     toggleSection("model-info");
 });
+
